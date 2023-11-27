@@ -18,6 +18,34 @@ def crearHabitacionDispositivos(): #x ahora crea un archivo para los usuarios pa
     with open("habitacionDispisitivos.txt", "w") as file:
         pass
     print("\n---¡Archivo de info de usuario creado correctamente!---\n")
+    
+def agregarInfoUsuario():
+    print("\n=== Registro de Nuevo Usuario ===")
+    usuarios = []
+    while True:
+        nombre = input("Ingrese su nombre: ")
+        correo = input("Ingrese su correo electrónico: ")
+        pin = input("Ingrese su PIN: ")
+
+        nuevoUsuario = {"Nombre": nombre, "Correo": correo, "PIN": pin, "Casas": []}
+        usuarios.append(nuevoUsuario)
+        print("¡Usuario registrado exitosamente!")
+        guardarUsuarios(usuarios)
+        #Agregar opcion
+        break
+
+def guardarUsuarios(usuarios):
+    with open("usuarios.txt", "a+") as file:
+        for usuario in usuarios:
+            file.write(f"{usuario['Nombre']},{usuario['Correo']},{usuario['PIN']}\n")
+
+def mostrarInfoUsuarios():
+    print("\n\n--Lista final con info de usuario---\n\n")
+    file = open("usuarios.txt", "r")
+    mensaje = file.read()
+    print(mensaje)
+    file.close()
+    
 
 def agregarHabitacionDispositivos():
     casas = []
